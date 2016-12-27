@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
@@ -27,12 +26,17 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
-    kapt "com.android.databinding:compiler:2.2.2"
+    kapt "com.android.databinding:compiler:$gradleToolsVersion"
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-rx:$kotlin_coroutines_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-generate:$kotlin_coroutines_version"
     compile('com.jakewharton.rxbinding:rxbinding-kotlin:1.0.0') {
         exclude group: 'io.reactivex', module: 'rxjava'
         exclude group: 'com.android.support', 'module': 'support-annotations'
